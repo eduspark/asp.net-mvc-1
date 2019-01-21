@@ -1,0 +1,39 @@
+﻿@model  IEnumerable<prj.Models.MagazineListViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+
+    @*---- JS FORM -----*@
+    <form method="get" action="@Url.Action("Index")" data-hakder-ajax="true" data-hakder-target="#magazineList">
+        <input type="search" name="searchTerm" data-hakder-autocomplete="@Url.Action("AutoComplete")" />
+        <input type="submit" value="Search by Name" />
+    </form>
+
+    @*---- AJAX BEGIN FORM -----*@
+    @*@using (Ajax.BeginForm(
+            new AjaxOptions
+            {
+                HttpMethod = "Get",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "magazineList"
+            }))
+        {
+            <input type="search" name="searchTerm" />
+            <input type="submit" value="Search by Name" />
+        }*@
+
+    @*---- NORMAL FORM -----*@
+    @*<form method="get">
+            <input type="search" name="searchTerm" />
+            <input type="submit" value="Search by Name" />
+        </form>*@    
+
+    @Html.Partial("_Magazines", Model)
+   
+
+</div>
+
+

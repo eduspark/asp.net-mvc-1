@@ -1,0 +1,12 @@
+﻿
+@model  IEnumerable<prj.Models.MagazineListViewModel>
+
+<div id="magazineList">
+    @foreach (var item in Model)
+    {
+        <div>Magazine Name: @item.Name</div>
+        <div>Country: @item.Country</div>
+        <div>Reviews: @item.CountOfReviews</div>
+        <hr />
+    }
+</div>
