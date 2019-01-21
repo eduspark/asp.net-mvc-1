@@ -1,7 +1,15 @@
 ﻿
-@model  IEnumerable<prj.Models.MagazineListViewModel>
+@model  IPagedList<MagazineListViewModel>
+
+
 
 <div id="magazineList">
+
+    <div class="pagedList" data-hakder-target="#magazineList">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+       PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+
     @foreach (var item in Model)
     {
         <div>Magazine Name: @item.Name</div>

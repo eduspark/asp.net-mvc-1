@@ -1,0 +1,8 @@
+﻿=== PAGING ====
+- Add PagedList.Mvc Nuget Package <- PagedList also
+- Views icindeki WebConfig file razor configuration icin IPagedList'i View'de tanıması için buraya ekliyoruz
+  <add namespace="PagedList"/>
+  <add namespace="PagedList.Mvc"/>
+  olarak.
+  Buradaki değişiklikten sonra Visual Studio'yu yeniden başlatmanız gerekiyor.
+- 

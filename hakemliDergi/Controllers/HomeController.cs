@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace prj.Controllers
 {
@@ -26,7 +27,7 @@ namespace prj.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Index(string searchTerm = null) //?searchTerm = A
+        public ActionResult Index(string searchTerm = null, int page = 1) //?searchTerm = A
         {
             //Veri cogaltiginda search ve paging devreye girecek.
             var model = //_dbMagazine.Magazines.ToList();
@@ -34,9 +35,10 @@ namespace prj.Controllers
                 _dbMagazine.Magazines
                 .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
                 .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
-                .Take(10) //Ilk 10 Restorani goster
+                //.Take(10) //Ilk 10 Restorani goster
                 .Select(r => new MagazineListViewModel
-                { Id = r.Id, Name = r.Name, Country = r.Country, CountOfReviews = r.Reviews.Count });
+                { Id = r.Id, Name = r.Name, Country = r.Country, CountOfReviews = r.Reviews.Count })
+                .ToPagedList(page, 10);
             
             if(Request.IsAjaxRequest())
             {
